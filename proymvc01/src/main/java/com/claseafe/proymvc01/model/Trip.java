@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.fasterxml.jackson.databind.util.StdDateFormat;
+//import com.fasterxml.jackson.databind.util.StdDateFormat;
 
 public class Trip {
     private Integer id;
@@ -46,7 +46,7 @@ public class Trip {
     }
 
     public void setFecha(String fechaString) throws ParseException{
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             Date fecha = sdf.parse(fechaString);
             this.fecha = fecha;
         

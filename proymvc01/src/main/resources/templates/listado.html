@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Categorias Trips</title>
 </head>
 <body>
     <h1>Trips en El Salvador</h1>
-    <h2 th:text="'Trip: ' + ${trip}"></h2>
-    <h2 th:text="'Fecha publicacion: ' + ${fechaPublicacion}"></h2>
-    <h2 th:text="'Costo: ' + ${costo}"></h2>
-    <h2 th:text="'Vigente: ' + ${vigente}"></h2>
-
+    <ol>
+        <li th:each="tempTrip: ${listadoTrips}" th:text=${tempTrip}></li>
+    </ol>
 </body>
 </html>

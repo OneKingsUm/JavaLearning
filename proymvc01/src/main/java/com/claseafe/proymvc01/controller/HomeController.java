@@ -1,6 +1,6 @@
 package com.claseafe.proymvc01.controller;
 
-import java.text.DateFormat;
+//import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,24 +13,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.claseafe.proymvc01.model.Trip;
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+//import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 
 @Controller
 //@RestController
 public class HomeController {
     @GetMapping("/")
-    public String mostrarHome(Model model){
-        String mensaje2 ="hola mensaje 2";
-        Date fecha = new Date();
-        double costo = 6.2;
-        boolean vigencia = false;
+    public String mostrarHome(Model model) throws ParseException{
+        String trip ="Rapel en el volcan";
+        Date fechaPublicacion = new Date();
+        double costo = 5.0;
+        boolean vigente = true;
 
-        model.addAttribute("mensaje1", "hola desde controlador y metodo");
-        model.addAttribute("mensaje2", mensaje2);
-        model.addAttribute("fecha", fecha);
+        model.addAttribute("trip", trip);
+        model.addAttribute("fechaPublicacion", fechaPublicacion);
         model.addAttribute("costo", costo);
-        model.addAttribute("vigencia", vigencia);
+        model.addAttribute("vigente", vigente);
         return "home";
     }
     @GetMapping("/listado")
@@ -56,7 +55,6 @@ public class HomeController {
         return "detalle";
     }
     private List <Trip> getTrips(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
 
         List<Trip> lista = new LinkedList<Trip>();
         try {
