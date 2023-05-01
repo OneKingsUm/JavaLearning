@@ -1,35 +1,28 @@
 package com.claseafe.proymvc01.controller;
 
-//import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.claseafe.proymvc01.model.Trip;
-//import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+import com.claseafe.proymvc01.service.ITripService;
 
 
 @Controller
 //@RestController
 public class HomeController {
-    @GetMapping("/")
-    public String mostrarHome(Model model) throws ParseException{
-        String trip ="Rapel en el volcan";
-        Date fechaPublicacion = new Date();
-        double costo = 5.0;
-        boolean vigente = true;
+    @Autowired
+    private ITripService tripService;
 
-        model.addAttribute("trip", trip);
-        model.addAttribute("fechaPublicacion", fechaPublicacion);
-        model.addAttribute("costo", costo);
-        model.addAttribute("vigente", vigente);
+    @GetMapping("/")
+    public String mostrarHome(Model model){
+        List<Trip> lista = tripService.buscarTodos();
+        model.addAttribute("trips", lista);
         return "home";
     }
     @GetMapping("/listado")
@@ -54,7 +47,7 @@ public class HomeController {
         
         return "detalle";
     }
-    private List <Trip> getTrips(){
+    /*private List <Trip> getTrips(){
 
         List<Trip> lista = new LinkedList<Trip>();
         try {
@@ -65,6 +58,7 @@ public class HomeController {
             trip1.setFecha("10-05-2022");
             trip1.setCosto(5.0);
             trip1.setDestacado(1);
+            trip1.setImagen("trip01.png");
 
             Trip trip2 = new Trip();
             trip2.setId(2);
@@ -73,6 +67,7 @@ public class HomeController {
             trip2.setFecha("10-05-2022");
             trip2.setCosto(5.0);
             trip2.setDestacado(1);
+            trip2.setImagen("trip02.png");
 
             Trip trip3 = new Trip();
             trip3.setId(3);
@@ -80,6 +75,7 @@ public class HomeController {
             trip3.setDescripcion("Disfrutar de un amplio jardin en el cual podras comprar");
             trip3.setFecha("10-05-2022");
             trip3.setCosto(1.0);
+            trip2.setImagen("trip03.png");
 
             Trip trip4 = new Trip();
             trip4.setId(4);
@@ -96,11 +92,12 @@ public class HomeController {
             System.out.println(e.getMessage());
         }
         return lista;
-    }
+    }*/
     @GetMapping ("/tabla")
     public String mostrarTabla(Model model){
-        List <Trip> lista = getTrips();
+        List <Trip> lista = tripService.buscarTodos();
         model.addAttribute("trips", lista);
         return "tabla";
     }
+
 }

@@ -13,6 +13,7 @@ public class Trip {
     private Date fecha;
     private Double costo;
     private Integer destacado;
+    private String imagen = "no-image.png";
 
     @Override
     public String toString(){
@@ -66,4 +67,11 @@ public class Trip {
     public void setDestacado(Integer destacado) {
         this.destacado = destacado;
     }
+    public String getImagen() {
+        return imagen;
+      }
+    
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+      }
 }
