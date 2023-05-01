@@ -3,15 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0", shrink-to-fit="no">
+    <title>TripApp | Aplicacion para publicar ofertas de Vacil en El Salvador</title>
+    <!--Bootstrap core CSS-->
+    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!--Custom styles for this template-->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
 </head>
 <body>
-    <h1>Trips en El Salvador</h1>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">TripApp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#"><span class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="navbarExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Inicio</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h2 class="font-weight-bold text-center text-capitalize">DESTACADOS</h2>
+        <hr>
+        <div class="row" th:each="trip : ${trips}">
+            <div class="col-md-3">
+                <img class="rounded mx-auto d-block" th:src="@{/images/{img} (img=${trip.imagen})}" alt="Generic placeholder image" width="200" height="190">
+            </div>
+            <div class="col-md-9">
+                <h2 th:text=${trip.nombre}></h2>
+                <h6 class="card-title"><strong>Categoria: </strong><span>Aventura</span></h6>
+                <h6 class="card-title"><strong>Publicado: </strong><span th:text=${trip.fecha}></span></h6>
+                <p th:text=${trip.descripcion}></p>
+                <p><a class="btn btn-secondary" href="#" role="button">Ver detalles &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+    <!--<h1>Trips en El Salvador</h1>
     <h2 th:text="'Trip: ' + ${trip}"></h2>
     <h2 th:text="'Fecha publicacion: ' + ${fechaPublicacion}"></h2>
     <h2 th:text="'Costo: ' + ${costo}"></h2>
-    <h2 th:text="'Vigente: ' + ${vigente}"></h2>
-
+    <h2 th:text="'Vigente: ' + ${vigente}"></h2>-->
+    
+    <!--Bootstrap core JavaScript-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
